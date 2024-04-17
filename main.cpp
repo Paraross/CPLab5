@@ -4,49 +4,27 @@
 #include <thread>
 #include <future>
 
+#include "things.h"
+
 using namespace std::chrono;
-
-std::string fetchDataFromDB(std::string recvdData)
-{
-    // Make sure that function takes 5 seconds to complete
-    std::this_thread::sleep_for(seconds(2));
-
-    //Do stuff like creating DB Connection and fetching Data
-    return "DB_" + recvdData;
-}
-
-std::string fetchDataFromFile(std::string recvdData)
-{
-    // Make sure that function takes 5 seconds to complete
-    std::this_thread::sleep_for(seconds(1));
-
-    //Do stuff like fetching Data File
-    return "File_" + recvdData;
-}
 
 int main()
 {
-    // Get Start Time
     system_clock::time_point start = system_clock::now();
 
-    auto resultFromDB = std::async(std::launch::async, fetchDataFromDB, "Data");
+    // auto future = std::async(delayed_print);
 
-    //Fetch Data from File
-    auto fileData = fetchDataFromFile("Data");
+    // // std::this_thread::sleep_for(milliseconds(1));
+    // std::this_thread::sleep_for(microseconds(1000));
 
-    //Fetch Data from DB
-    // Will block till data is available in future<std::string> object.
-    auto dbData = resultFromDB.get();
+    // std::cout << "main thread\n";
 
-    // Get End Time
+    // future.get();
+
+    // std::cout << "pi: " << estimate_pi(1e+6) << '\n';
+    std::cout << "pi: " << estimate_pi_async<4>(1e+6) << '\n';
+
     auto end = system_clock::now();
-
-    auto diff = duration_cast < std::chrono::seconds > (end - start).count();
-    std::cout << "Total Time Taken = " << diff << " Seconds" << std::endl;
-
-    //Combine The Data
-    auto data = dbData + " :: " + fileData;
-
-    //Printing the combined Data
-    std::cout << "Data = " << data << std::endl;
+    auto diff = duration_cast<milliseconds>(end - start).count();
+    std::cout << "Total Time Taken = " << diff << "ms" << std::endl;
 }

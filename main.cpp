@@ -2,6 +2,7 @@
 #include <string>
 #include <chrono>
 #include <thread>
+#include <future>
 
 using namespace std::chrono;
 
@@ -28,11 +29,14 @@ int main()
     // Get Start Time
     system_clock::time_point start = system_clock::now();
 
-    //Fetch Data from DB
-    std::string dbData = fetchDataFromDB("Data");
+    auto resultFromDB = std::async(std::launch::async, fetchDataFromDB, "Data");
 
     //Fetch Data from File
-    std::string fileData = fetchDataFromFile("Data");
+    auto fileData = fetchDataFromFile("Data");
+
+    //Fetch Data from DB
+    // Will block till data is available in future<std::string> object.
+    auto dbData = resultFromDB.get();
 
     // Get End Time
     auto end = system_clock::now();
@@ -41,7 +45,7 @@ int main()
     std::cout << "Total Time Taken = " << diff << " Seconds" << std::endl;
 
     //Combine The Data
-    std::string data = dbData + " :: " + fileData;
+    auto data = dbData + " :: " + fileData;
 
     //Printing the combined Data
     std::cout << "Data = " << data << std::endl;

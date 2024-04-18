@@ -1,7 +1,6 @@
 #pragma once
 
 #include <random>
-#include <future>
 
 // https://en.wikipedia.org/wiki/Monte_Carlo_method#Overview
 float estimate_pi(uint32_t point_count) {
@@ -23,7 +22,3 @@ float estimate_pi(uint32_t point_count) {
 
     return (float)inside_count / (float)point_count * 4.0f;
 }
-
-// float estimate_pi_async(uint32_t point_count) {
-//     // TODO
-// }

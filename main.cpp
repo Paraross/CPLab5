@@ -1,4 +1,4 @@
-#include "things.h"
+#include "estimate_pi_async.h"
 #include "bench.h"
 
 const uint32_t POINT_COUNT = (uint32_t)1e+6;

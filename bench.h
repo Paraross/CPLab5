@@ -5,6 +5,9 @@
 #include <thread>
 #include <future>
 
+#include "estimate_pi.h"
+#include "estimate_pi_async.h"
+
 using namespace std::chrono;
 
 void bench_sync(uint32_t point_count) {
@@ -18,7 +21,6 @@ void bench_sync(uint32_t point_count) {
     auto diff = duration_cast<milliseconds>(end - start).count();
 
     std::cout << "Time taken: " << diff << "ms" << std::endl;
-
 }
 
 
@@ -34,7 +36,6 @@ void bench_async(uint32_t point_count) {
     auto diff = duration_cast<milliseconds>(end - start).count();
 
     std::cout << "Time taken: " << diff << "ms" << std::endl;
-
 }
 
 void bench_async_vec(uint32_t point_count, uint32_t thread_count) {
@@ -48,5 +49,4 @@ void bench_async_vec(uint32_t point_count, uint32_t thread_count) {
     auto diff = duration_cast<milliseconds>(end - start).count();
 
     std::cout << "Time taken: " << diff << "ms" << std::endl;
-
 }

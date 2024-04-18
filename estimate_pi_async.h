@@ -1,22 +1,10 @@
 #pragma once
 
-#include <iostream>
-#include <string>
 #include <chrono>
-#include <thread>
 #include <future>
-#include <cmath>
 #include <vector>
 
 #include "estimate_pi.h"
-
-void delayed_print() {
-    std::cout << "delayed_print start\n";
-
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-
-    std::cout << "delayed_print end\n";
-}
 
 template<uint32_t ThreadCount>
 float estimate_pi_async(uint32_t point_count) {

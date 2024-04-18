@@ -1,30 +1,12 @@
-#include <iostream>
-#include <string>
-#include <chrono>
-#include <thread>
-#include <future>
-
 #include "things.h"
+#include "bench.h"
 
-using namespace std::chrono;
+const uint32_t POINT_COUNT = (uint32_t)1e+6;
+const uint32_t THREAD_COUNT = 4;
 
 int main()
 {
-    system_clock::time_point start = system_clock::now();
-
-    // auto future = std::async(delayed_print);
-
-    // // std::this_thread::sleep_for(milliseconds(1));
-    // std::this_thread::sleep_for(microseconds(1000));
-
-    // std::cout << "main thread\n";
-
-    // future.get();
-
-    // std::cout << "pi: " << estimate_pi(1e+6) << '\n';
-    std::cout << "pi: " << estimate_pi_async<4>(1e+6) << '\n';
-
-    auto end = system_clock::now();
-    auto diff = duration_cast<milliseconds>(end - start).count();
-    std::cout << "Total Time Taken = " << diff << "ms" << std::endl;
+    bench_sync(POINT_COUNT);
+    bench_async<THREAD_COUNT>(POINT_COUNT);
+    bench_async_vec(POINT_COUNT, THREAD_COUNT);
 }

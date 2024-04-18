@@ -1,34 +1,11 @@
 #pragma once
 
 #include <iostream>
-// #include <string>
 #include <chrono>
 #include <thread>
 #include <future>
 
 using namespace std::chrono;
-
-// void bench_function(float (*fn)(uint32_t, uint32_t), uint32_t point_count, uint32_t thread_count) {
-//     system_clock::time_point start = system_clock::now();
-
-//     std::cout << "pi: " << fn(point_count, thread_count) << '\n';
-
-//     auto end = system_clock::now();
-//     auto diff = duration_cast<milliseconds>(end - start).count();
-//     std::cout << "Total Time Taken: " << diff << "ms" << std::endl;
-
-// }
-
-// void bench_function(float (*fn)(uint32_t), uint32_t point_count) {
-//     system_clock::time_point start = system_clock::now();
-
-//     std::cout << "pi: " << fn(point_count) << '\n';
-
-//     auto end = system_clock::now();
-//     auto diff = duration_cast<milliseconds>(end - start).count();
-//     std::cout << "Total Time Taken: " << diff << "ms" << std::endl;
-
-// }
 
 void bench_sync(uint32_t point_count) {
     std::cout << "Benchmarking function 'estimate_pi' with " << point_count << " points\n";
@@ -73,4 +50,3 @@ void bench_async_vec(uint32_t point_count, uint32_t thread_count) {
     std::cout << "Time taken: " << diff << "ms" << std::endl;
 
 }
-

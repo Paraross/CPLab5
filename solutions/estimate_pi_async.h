@@ -5,7 +5,8 @@
 
 #include "../readonly/estimate_pi.h"
 
-template<uint32_t ThreadCount>
+// This template is an overkill for the task, but I've written it already, so it's staying here.
+template<uint32_t ThreadCount = 4>
 float estimate_pi_async(uint32_t point_count) {
     std::future<float> pi_val_futures[ThreadCount];
 

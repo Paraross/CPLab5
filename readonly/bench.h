@@ -6,7 +6,7 @@
 #include <future>
 
 #include "estimate_pi.h"
-#include "../estimate_pi_async.h"
+#include "../solutions/estimate_pi_async.h"
 
 using namespace std::chrono;
 

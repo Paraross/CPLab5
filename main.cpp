@@ -1,5 +1,5 @@
 #include "estimate_pi_async.h"
-#include "bench.h"
+#include "readonly/bench.h"
 
 const uint32_t POINT_COUNT = (uint32_t)1e+6;
 const uint32_t THREAD_COUNT = 4;

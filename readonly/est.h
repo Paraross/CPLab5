@@ -37,5 +37,6 @@ int calculate_fi(int n) {
     {
         return n;
     }
+
     return calculate_fi(n - 1) + calculate_fi(n - 2);
 }

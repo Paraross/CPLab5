@@ -3,6 +3,8 @@
 This repository contains both the tasks and their solutions.
 The version given to students will *obviously* not contain the solutions.
 
+Some things may still be WIP, but they will be finish in due time.
+
 ## Instructions
 
 1. Get the files.

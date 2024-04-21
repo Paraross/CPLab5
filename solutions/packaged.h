@@ -10,46 +10,43 @@
 typedef std::chrono::milliseconds MSEC;
 typedef std::chrono::high_resolution_clock HRC;
 
-//Task3
 void task3() {
-    std::packaged_task<int(int)> fi(calculate_fi);
-    fi(6);
-    std::packaged_task<int()> fi2(std::bind(calculate_fi, 6));
-    fi2();
-    std::cout << fi.get_future().get() << ' ' << fi2.get_future().get();
+    std::packaged_task<int(int)> fib(calculate_fib);
+    fib(6);
+    std::packaged_task<int()> fib2(std::bind(calculate_fib, 6));
+    fib2();
+    std::cout << fib.get_future().get() << ' ' << fib2.get_future().get();
 }
 
-//Task4
 void task4() {
-    std::packaged_task<double()> packt2(calculate_sqrt2);
+    std::packaged_task<double()> pack_task2(calculate_sqrt2);
 
-    std::future<double> future = packt2.get_future();
+    std::future<double> future = pack_task2.get_future();
   
     calculate_pi();
-    packt2();
+    pack_task2();
     
     std::cout << future.get();
 
 }
 
-//Task5
 void task5() {
     auto start = HRC::now();
 
-    std::packaged_task<double()> packt1(calculate_pi);
-    std::packaged_task<double()> packt2(calculate_sqrt2);
+    std::packaged_task<double()> pack_task1(calculate_pi);
+    std::packaged_task<double()> pack_task2(calculate_sqrt2);
 
-    std::future<double> future1 = packt1.get_future();
-    std::future<double> future2 = packt2.get_future();
+    std::future<double> future1 = pack_task1.get_future();
+    std::future<double> future2 = pack_task2.get_future();
 
-    std::thread threadpi(std::move(packt1)); //threadpi starts running
-    std::thread threade(std::move(packt2));
+    std::thread thread_pi(std::move(pack_task1));
+    std::thread thread_e(std::move(pack_task2));
 
     double result1 = future1.get();
     double result2 = future2.get();
 
-    threadpi.join();
-    threade.join();
+    thread_pi.join();
+    thread_e.join();
 
     auto end = HRC::now();
     auto exec_time = std::chrono::duration_cast<MSEC>(end - start);
@@ -61,5 +58,4 @@ void task5() {
     end = HRC::now();
     exec_time = std::chrono::duration_cast<MSEC>(end - start); 
     std::cout << exec_time.count() << " <- Notice how these values were printed one after another.";
-
 }

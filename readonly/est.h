@@ -12,7 +12,7 @@ double calculate_pi() {
     double sum = 0;
     int sign = 1;
     
-    for (int i = 0; i < 1000000000; ++i) 
+    for (int i = 0; i < (int)1e+9; i++) 
     {
         sum += sign / ( 2.0 * i + 1.0);
         sign *= -1;
@@ -24,7 +24,7 @@ double calculate_pi() {
 double calculate_sqrt2() {
     double x = 1.0;
 
-    for (int i = 0; i < 1000000000; ++i) 
+    for (int i = 0; i < (int)1e+9; i++) 
     {
         x = 0.5 * (x + 2 / x);
     }

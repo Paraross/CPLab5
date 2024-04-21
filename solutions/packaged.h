@@ -1,20 +1,26 @@
 #pragma once
 
+#include <functional>
+#include <iostream>
+#include <future>
+#include <chrono>
 
 #include "../readonly/est.h"
 
+typedef std::chrono::milliseconds MSEC;
+typedef std::chrono::high_resolution_clock HRC;
+
 //Task3
-void task3()
-{
+void task3() {
     std::packaged_task<int(int)> fi(calculate_fi);
     fi(6);
     std::packaged_task<int()> fi2(std::bind(calculate_fi, 6));
     fi2();
     std::cout << fi.get_future().get() << ' ' << fi2.get_future().get();
 }
+
 //Task4
-void task4()
-{
+void task4() {
     std::packaged_task<double()> packt2(calculate_sqrt2);
 
     std::future<double> future = packt2.get_future();
@@ -25,9 +31,9 @@ void task4()
     std::cout << future.get();
 
 }
+
 //Task5
-void task5()
-{
+void task5() {
     auto start = HRC::now();
 
     std::packaged_task<double()> packt1(calculate_pi);
